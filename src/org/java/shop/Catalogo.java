@@ -8,15 +8,19 @@ public class Catalogo {
 	  Scanner sc = new Scanner(System.in);
 	  
 	  while(true) {
-		  System.out.println("Cosa vuoi inserire? Digita: 1 per Smartphone, 2 per Televisore, 3 per Cuffie,");
+		  System.out.println("Cosa vuoi inserire? Digita: 1 per Smartphone, 2 per Televisore, 3 per Cuffie, 4 per uscire");
 		  int userChoise = sc.nextInt();
 		  
-		  if (userChoise < 1 || userChoise > 3) {
+		  if (userChoise < 1 || userChoise > 4) {
 				
 				System.err.println("Scelta non trovata");
 				
 				continue;
 			}
+		  if (userChoise == 4){
+			  System.out.println("Arrivederci");
+			   return;
+		  }
 		  
 		  System.out.println("Inserisci codice");
 		  int productCode = sc.nextInt();
@@ -28,6 +32,7 @@ public class Catalogo {
 		  int productPrice = sc.nextInt();
 		  System.out.println("Inserisci iva");
 		  int productIva = sc.nextInt();
+		   
 		  
 		  switch(userChoise){
 		  	case 1: {
@@ -37,7 +42,6 @@ public class Catalogo {
 				int phoneMemory = sc.nextInt();
 				  
 				Smartphone userSmartPhone = new Smartphone(productCode, productName, productBrand, productPrice, productIva, phoneImeiCode, phoneMemory);
-				System.out.println(userSmartPhone);
 		  	}
 		  	break;
 		  	case 2 : {
@@ -46,7 +50,6 @@ public class Catalogo {
 				System.out.println("è smart?");
 				boolean tvSmart = sc.nextBoolean();
 				Televisore usertv = new Televisore(productCode, productName, productBrand, productPrice, productIva, tvSize, tvSmart);
-				System.out.println(usertv);
 		  	}
 		  	break;
 		  	case 3 : {
@@ -57,14 +60,10 @@ public class Catalogo {
 				System.out.println("sono cablate?");
 				boolean podsCablate = sc.nextBoolean();
 				Cuffie pods = new Cuffie(productCode, productName, productBrand, productPrice, productIva, podsColor, podsWireless, podsCablate);
-				System.out.println(pods);
 		  	}
 		  	break;
 		  }
-		  
 	  }
-	  
-	  sc.close();
 	  
   }
 }
