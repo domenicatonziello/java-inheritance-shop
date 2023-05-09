@@ -7,6 +7,10 @@ public class Catalogo {
 	
 	  Scanner sc = new Scanner(System.in);
 	  
+	  Prodotto[] listaProdotti = new Prodotto[100];
+	  int i = 0;
+	  
+	  
 	  while(true) {
 		  System.out.println("Cosa vuoi inserire? Digita: 1 per Smartphone, 2 per Televisore, 3 per Cuffie, 4 per uscire");
 		  int userChoise = sc.nextInt();
@@ -18,7 +22,26 @@ public class Catalogo {
 				continue;
 			}
 		  if (userChoise == 4){
-			  System.out.println("Arrivederci");
+			  System.out.println("Lista Prodotti: ");
+			  for(int x = 0; x < listaProdotti.length; x++) {
+				  
+				  Prodotto elemento = listaProdotti[x];
+				  
+				  if(elemento instanceof Smartphone) {
+					  Smartphone phone = (Smartphone) elemento;
+					  System.out.println(phone);
+					  System.out.println("-----------------------------");
+				  }else if(elemento instanceof Televisore) {
+					  Televisore tv = (Televisore) elemento;
+					  System.out.println(tv);
+					  System.out.println("-----------------------------");
+				  } else if (elemento instanceof Cuffie){
+					  Cuffie pods = (Cuffie) elemento;
+					  System.out.println(pods);
+					  System.out.println("-----------------------------");
+				  }
+				  sc.close();
+			  }
 			   return;
 		  }
 		  
@@ -41,7 +64,8 @@ public class Catalogo {
 				System.out.println("Inserisci memoria");
 				int phoneMemory = sc.nextInt();
 				  
-				Smartphone userSmartPhone = new Smartphone(productCode, productName, productBrand, productPrice, productIva, phoneImeiCode, phoneMemory);
+				listaProdotti[i] = new Smartphone(productCode, productName, productBrand, productPrice, productIva, phoneImeiCode, phoneMemory);
+				i++;
 		  	}
 		  	break;
 		  	case 2 : {
@@ -49,7 +73,8 @@ public class Catalogo {
 				int tvSize = sc.nextInt();
 				System.out.println("è smart?");
 				boolean tvSmart = sc.nextBoolean();
-				Televisore usertv = new Televisore(productCode, productName, productBrand, productPrice, productIva, tvSize, tvSmart);
+				listaProdotti[i]  = new Televisore(productCode, productName, productBrand, productPrice, productIva, tvSize, tvSmart);
+				i++;
 		  	}
 		  	break;
 		  	case 3 : {
@@ -59,11 +84,12 @@ public class Catalogo {
 				boolean podsWireless = sc.nextBoolean();
 				System.out.println("sono cablate?");
 				boolean podsCablate = sc.nextBoolean();
-				Cuffie pods = new Cuffie(productCode, productName, productBrand, productPrice, productIva, podsColor, podsWireless, podsCablate);
+				listaProdotti[i] = new Cuffie(productCode, productName, productBrand, productPrice, productIva, podsColor, podsWireless, podsCablate);
+				i++;
 		  	}
 		  	break;
 		  }
+		  
 	  }
-	  
   }
 }
